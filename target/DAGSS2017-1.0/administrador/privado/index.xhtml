@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:b="http://bootsfaces.net/ui">
 
     <body>
@@ -11,16 +11,16 @@
         <ui:composition template="/plantillas/plantillaComun.xhtml">
 
             <ui:define name="tituloPagina">
-                <h2> Página principal de Farmacias </h2>
+                <h2>  Página principal de Administradores </h2>
             </ui:define>            
 
             <ui:define name="menu">
-                <ui:include src="/plantillas/menuComun.xhtml"/>
+                <ui:include src="/administrador/plantillas/menuAdministrador.xhtml"/>
             </ui:define>
 
             <ui:define name="contenido">
                 <b:jumbotron >
-                    <h:link value="Recetas Paciente" outcome="/farmacia/privado/recetas/introducirPaciente.xhtml"/>
+                    <h2> <h:outputText value="Aqui iría un fondo o algo bonito si tuviera gusto estético"/> </h2>
                 </b:jumbotron>
             </ui:define>
 

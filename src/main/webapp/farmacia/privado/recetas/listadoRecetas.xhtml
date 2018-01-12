@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/plantillas/plantillaComun.xhtml">
+
+        <ui:define name="tituloPagina">
+            <h3> Gestión de Recetas </h3>
+        </ui:define>
+
+        <ui:define name="menu">
+            <ui:include src=""/>                
+        </ui:define>
+
+        <ui:define name="contenido">
+            <h:form id="formularioListado">    
+                <b:container fluid="true">
+                    <b:panel title="Listado de Recetas" collapsible="false">
+                        <b:dataTable id="tablaListado" class="tablaListadoClass"
+                                     value="#{RecetasPacienteControlador.recetas}"
+                                     var="receta"                            
+                                     page-length="5" page-length-menu="[5,10,20]">                     
+                            <b:dataTableColumn label="Id">
+                                <h:outputText value="#{receta.id}"/>
+                            </b:dataTableColumn>
+
+                            <b:dataTableColumn label="Estado">
+                                <h:outputText value="#{receta.estadoReceta}" />
+                            </b:dataTableColumn>                    
+
+                            <b:dataTableColumn label="Cantidad">
+                                <h:outputText value="#{receta.cantidad}" />
+                            </b:dataTableColumn>                    
+
+                            <b:dataTableColumn label="Farmacia">
+                                <h:outputText value="#{receta.farmaciaDispensadora.nombreFarmacia} " />
+                            </b:dataTableColumn>                    
+
+                            <b:dataTableColumn label="Fin Validez">
+                                <h:outputText value="#{receta.finValidez}">
+                                </h:outputText>
+                            </b:dataTableColumn>
+
+                            <b:dataTableColumn label="Inicio Validez">
+                                <h:outputText value="#{receta.inicioValidez}">
+                                </h:outputText>
+                            </b:dataTableColumn>
+
+                        </b:dataTable>
+                        
+                    </b:panel>
+                </b:container>
+            </h:form>         
+
+        </ui:define>
+
+    </ui:composition>
+
+</html>
+
