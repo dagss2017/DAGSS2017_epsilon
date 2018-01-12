@@ -1,16 +1,62 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/plantillas/plantillaComun.xhtml">
+
+        <ui:define name="tituloPagina">
+            <h3> Gestión de Recetas </h3>
+        </ui:define>
+
+        <ui:define name="menu">
+                <ui:include src="/farmacia/plantillas/menuFarmacia.xhtml"/>
+        </ui:define>
+
+        
+        
+        <ui:define name="contenido">
+            <h:form id="formularioListado">    
+                <b:container fluid="true">
+                    <b:panel title="Listado de Recetas" collapsible="false">
+                        <b:dataTable id="tablaListado" class="tablaListadoClass"
+                                     value="#{RecetasPacienteControlador.recetas}"
+                                     var="receta"                            
+                                     page-length="5" page-length-menu="[5,10,20]">                     
+                            <b:dataTableColumn label="Medicamento">
+                                <h:outputText value="#{receta.prescripcion.medicamento.nombre}"/>
+                            </b:dataTableColumn>
+
+                            <b:dataTableColumn label="Estado">
+                                <h:outputText value="#{receta.estadoReceta}" />
+                            </b:dataTableColumn>                    
+
+                            <b:dataTableColumn label="Médico">
+                                <h:outputText value="#{receta.prescripcion.medico.nombre}" />
+                            </b:dataTableColumn>                                      
+
+                            <b:dataTableColumn label="Fin Validez">
+                                <h:outputText value="#{receta.finValidez}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
+                                </h:outputText>
+                            </b:dataTableColumn>
+                            
+                            <b:dataTableColumn label="Disponibilidad">
+                                <h:outputText value="#{RecetasPacienteControlador.recetaValida(receta.finValidez)}" />
+                            </b:dataTableColumn>
+
+                        </b:dataTable>
+                        
+                    </b:panel>
+                </b:container>
+            </h:form>         
+
+        </ui:define>
+
+    </ui:composition>
+
 </html>
+

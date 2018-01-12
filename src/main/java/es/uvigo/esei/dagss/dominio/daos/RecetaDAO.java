@@ -16,7 +16,7 @@ public class RecetaDAO extends GenericoDAO<Receta>{
  
     // Completar aqui
     
-    public List<Receta> listarRecetas(String NSS) 
+    public List<Receta> listarRecetas(String NTS) 
     {
         TypedQuery<Receta> q = em.createQuery(  "SELECT r " +
                                                 " FROM Receta AS r"+
@@ -24,9 +24,9 @@ public class RecetaDAO extends GenericoDAO<Receta>{
                                                 " ON r.prescripcion.id = p.id"+
                                                 " INNER JOIN Paciente AS d"+
                                                 " ON p.paciente.id = d.id"+
-                                                " WHERE d.numeroSeguridadSocial= :NSS",Receta.class);
+                                                " WHERE d.numeroTarjetaSanitaria= :NTS",Receta.class);
     
-    q.setParameter("NSS", NSS);
+    q.setParameter("NTS", NTS);
 
         return q.getResultList();
     }

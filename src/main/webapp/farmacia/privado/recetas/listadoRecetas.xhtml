@@ -13,9 +13,11 @@
         </ui:define>
 
         <ui:define name="menu">
-            <ui:include src=""/>                
+                <ui:include src="/farmacia/plantillas/menuFarmacia.xhtml"/>
         </ui:define>
 
+        
+        
         <ui:define name="contenido">
             <h:form id="formularioListado">    
                 <b:container fluid="true">
@@ -24,30 +26,26 @@
                                      value="#{RecetasPacienteControlador.recetas}"
                                      var="receta"                            
                                      page-length="5" page-length-menu="[5,10,20]">                     
-                            <b:dataTableColumn label="Id">
-                                <h:outputText value="#{receta.id}"/>
+                            <b:dataTableColumn label="Medicamento">
+                                <h:outputText value="#{receta.prescripcion.medicamento.nombre}"/>
                             </b:dataTableColumn>
 
                             <b:dataTableColumn label="Estado">
                                 <h:outputText value="#{receta.estadoReceta}" />
                             </b:dataTableColumn>                    
 
-                            <b:dataTableColumn label="Cantidad">
-                                <h:outputText value="#{receta.cantidad}" />
-                            </b:dataTableColumn>                    
-
-                            <b:dataTableColumn label="Farmacia">
-                                <h:outputText value="#{receta.farmaciaDispensadora.nombreFarmacia} " />
-                            </b:dataTableColumn>                    
+                            <b:dataTableColumn label="Médico">
+                                <h:outputText value="#{receta.prescripcion.medico.nombre}" />
+                            </b:dataTableColumn>                                      
 
                             <b:dataTableColumn label="Fin Validez">
-                                <h:outputText value="#{receta.finValidez}">
+                                <h:outputText value="#{receta.finValidez}" >
+                                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
                                 </h:outputText>
                             </b:dataTableColumn>
-
-                            <b:dataTableColumn label="Inicio Validez">
-                                <h:outputText value="#{receta.inicioValidez}">
-                                </h:outputText>
+                            
+                            <b:dataTableColumn label="Disponibilidad">
+                                <h:outputText value="#{RecetasPacienteControlador.recetaValida(receta.finValidez)}" />
                             </b:dataTableColumn>
 
                         </b:dataTable>

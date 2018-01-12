@@ -11,6 +11,9 @@ import es.uvigo.esei.dagss.dominio.daos.RecetaDAO;
 import es.uvigo.esei.dagss.dominio.entidades.Receta;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
+import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
@@ -70,5 +73,20 @@ public class RecetasPacienteControlador implements Serializable
         destino = "/farmacia/privado/recetas/listadoRecetas.xhtml";
         
         return destino;
+    }
+    
+    public String recetaValida(Date fecha)
+    {
+        LocalDateTime now = LocalDateTime.now();
+        Date now2= Date.from(now.toInstant(ZoneOffset.UTC));
+        
+        if(fecha.before(now2))
+        {
+            return "No Disponible";
+        }
+        else
+        {
+            return "Disponible para Suministro";
+        }  
     }
 }
