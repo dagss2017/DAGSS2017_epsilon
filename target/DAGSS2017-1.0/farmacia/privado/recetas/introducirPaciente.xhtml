@@ -6,14 +6,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:b="http://bootsfaces.net/ui">
     
-     <body>
-
-        <ui:define name="menu">
+     <body>       
+        <ui:composition template="/plantillas/plantillaComun.xhtml">           
+            <ui:define name="menu">
                 <ui:include src="/farmacia/plantillas/menuFarmacia.xhtml"/>
-        </ui:define>
-         
-        <ui:composition template="/plantillas/plantillaComun.xhtml">
-              <ui:define name="contenido">
+            </ui:define>
+            
+            <ui:define name="contenido">
                 <h:form id="farmaciaForm">
                     <b:column offset="3" span="6">
                         <b:panel title="Paciente" look="primary" collapsible="false">

@@ -8,6 +8,7 @@ package es.uvigo.esei.dagss.controladores.farmacia;
 import es.uvigo.esei.dagss.dominio.daos.PacienteDAO;
 import es.uvigo.esei.dagss.dominio.daos.PrescripcionDAO;
 import es.uvigo.esei.dagss.dominio.daos.RecetaDAO;
+import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.Receta;
 
 import java.io.Serializable;
@@ -17,6 +18,8 @@ import java.util.Date;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -68,9 +71,21 @@ public class RecetasPacienteControlador implements Serializable
     public String listarRecetas()
     {
         String destino = null;
-        
-        recetas = recetaDAO.listarRecetas(NSS);
-        destino = "/farmacia/privado/recetas/listadoRecetas.xhtml";
+        if (NSS==null) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "No se ha indicado un paciente", ""));
+        } else 
+        {
+            Paciente paciente=pacienteDAO.buscarPorTarjetaSanitaria(NSS);
+            if(paciente==null)
+            {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Introduzca un paciente correcto", ""));
+            }
+            else
+            {
+                recetas = recetaDAO.listarRecetas(NSS);
+                destino = "/farmacia/privado/recetas/listadoRecetas.xhtml";
+            }
+        }
         
         return destino;
     }
