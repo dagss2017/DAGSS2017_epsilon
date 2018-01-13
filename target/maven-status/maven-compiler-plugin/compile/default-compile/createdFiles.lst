@@ -29,8 +29,8 @@ es/uvigo/esei/dagss/controladores/administrador/GestionAdministradoresControlado
 es/uvigo/esei/dagss/dominio/daos/MedicoDAO.class
 es/uvigo/esei/dagss/dominio/entidades/CentroSalud.class
 es/uvigo/esei/dagss/controladores/medico/MedicoControlador.class
-es/uvigo/esei/dagss/dominio/entidades/Medico.class
 es/uvigo/esei/dagss/dominio/entidades/Administrador.class
+es/uvigo/esei/dagss/dominio/entidades/Medico.class
 es/uvigo/esei/dagss/dominio/entidades/Cita.class
 es/uvigo/esei/dagss/dominio/entidades/Receta.class
 es/uvigo/esei/dagss/controladores/autenticacion/FiltroAutenticacion.class
