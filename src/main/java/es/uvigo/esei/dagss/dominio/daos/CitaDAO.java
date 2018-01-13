@@ -5,13 +5,26 @@
 package es.uvigo.esei.dagss.dominio.daos;
 
 import es.uvigo.esei.dagss.dominio.entidades.Cita;
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
-
+import javax.persistence.TypedQuery;
+/**
+ *
+ * @author osognzalez
+ */
 
 @Stateless
 @LocalBean
 public class CitaDAO  extends GenericoDAO<Cita>{    
 
-    // Completar aqui
+    public List<Cita> buscarCitasDelMedico(String medicoID) {
+        System.out.print("medico id: "+medicoID);
+        TypedQuery<Cita> q = em.createQuery("SELECT c FROM Cita AS c "
+                                              + "  WHERE c.medico.id = :medID", Cita.class);
+        q.setParameter("medID", medicoID);
+
+        return q.getResultList();
+    }
+
 }
