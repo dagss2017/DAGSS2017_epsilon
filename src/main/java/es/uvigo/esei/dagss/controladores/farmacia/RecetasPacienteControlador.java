@@ -1,13 +1,13 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ Proyecto Java EE, DAGSS-2017
  */
 package es.uvigo.esei.dagss.controladores.farmacia;
 
 import es.uvigo.esei.dagss.dominio.daos.PacienteDAO;
 import es.uvigo.esei.dagss.dominio.daos.PrescripcionDAO;
 import es.uvigo.esei.dagss.dominio.daos.RecetaDAO;
+import es.uvigo.esei.dagss.dominio.entidades.EstadoReceta;
+import es.uvigo.esei.dagss.dominio.entidades.Farmacia;
 import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.Receta;
 
@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
-import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.enterprise.context.ConversationScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -33,24 +33,19 @@ public class RecetasPacienteControlador implements Serializable
 {
     private String NSS;
     
-    @Inject
+    @EJB
     PacienteDAO pacienteDAO;
     
-    @Inject
+    @EJB
     PrescripcionDAO prescripcionDAO;
     
-    @Inject
+    @EJB
     RecetaDAO recetaDAO;
     
     List<Receta> recetas;
 
     public RecetasPacienteControlador()
     {}
-    
-    @PostConstruct
-    public void inicializar() {
-       // recetas = recetaDAO.listarRecetas(NSS);
-    }
 
     public void setNSS(String NSS) {
         this.NSS = NSS;
@@ -90,7 +85,7 @@ public class RecetasPacienteControlador implements Serializable
         return destino;
     }
     
-    public String recetaValida(Date fecha)
+    public String recetaValida(Date fecha,Receta receta)
     {
         LocalDateTime now = LocalDateTime.now();
         Date now2= Date.from(now.toInstant(ZoneOffset.UTC));
@@ -101,7 +96,27 @@ public class RecetasPacienteControlador implements Serializable
         }
         else
         {
-            return "Disponible para Suministro";
+            if("GENERADA".equals(receta.getEstado().toString()))
+                return "Disponible para Suministro";
+            else
+                return "No Disponible";
         }  
     }
+    
+    public boolean servida(Receta receta, Date fecha)
+    {
+        LocalDateTime now = LocalDateTime.now();
+        Date now2= Date.from(now.toInstant(ZoneOffset.UTC));
+        
+        return "GENERADA".equals(receta.getEstadoReceta().toString())&&(fecha.after(now2));
+    }
+        
+    public void retorno(Receta receta, Farmacia farmacia)
+    {
+       receta.setEstado(EstadoReceta.SERVIDA);
+       receta.setFarmaciaDispensadora(farmacia);
+       recetaDAO.actualizar(receta);
+       recetas = recetaDAO.listarRecetas(NSS);   
+    }
+
 }
