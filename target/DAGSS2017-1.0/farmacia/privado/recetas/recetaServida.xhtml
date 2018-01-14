@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="/plantillas/plantillaComun.xhtml">
+              <ui:define name="contenido">
+                <h:form id="VolverForm">
+                    <b:column offset="3" span="6">
+                        <b:panel title="Receta servida correctamente" look="primary" collapsible="false">
+                            <h:link value="Atender al mismo paciente" outcome="/farmacia/privado/recetas/listadoRecetas.xhtml"/>
+                            <h:link value="Atender a otro paciente" outcome="/farmacia/privado/recetas/introducirPaciente.xhtml"/>
+                            <f:facet name="footer">
+                                Buen Trabajo!!
+                            </f:facet>
+                        </b:panel>
+                    </b:column>
+                </h:form>                
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

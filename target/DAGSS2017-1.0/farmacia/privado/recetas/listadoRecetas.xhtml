@@ -17,7 +17,7 @@
         </ui:define>  
         
         <ui:define name="contenido">
-            <h:form id="formularioListado">    
+              
                 <b:container fluid="true">
                     <b:panel title="Listado de Recetas" collapsible="false">
                         <b:dataTable id="tablaListado" class="tablaListadoClass"
@@ -46,16 +46,18 @@
                                 <h:outputText value="#{recetasPacienteControlador.recetaValida(receta)}" />
                             </b:dataTableColumn>
              
-                            <b:dataTableColumn label="Acciones" class="text-center">                         
+                            <b:dataTableColumn label="Acciones" class="text-center">          
+                                 <h:form id="formularioListado" > 
                                 <b:commandButton id="BotonServir" icon-awesome="fa-check" tooltip="Servir"
-                                                 action="#{recetasPacienteControlador.toRet()}"/>
+                                                 action="#{recetasPacienteControlador.servirReceta(receta,farmaciaControlador.farmaciaActual)}"/>
+                                </h:form>      
                             </b:dataTableColumn>
                             
                         </b:dataTable>
                         
                     </b:panel>
                 </b:container>
-            </h:form>         
+               
 
         </ui:define>
 

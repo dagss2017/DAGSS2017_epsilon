@@ -17,10 +17,9 @@ import java.time.ZoneOffset;
 import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.enterprise.context.ConversationScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 /**
@@ -28,7 +27,7 @@ import javax.inject.Named;
  * @author LuisF
  */
 @Named(value = "recetasPacienteControlador")
-@ConversationScoped
+@SessionScoped
 public class RecetasPacienteControlador implements Serializable
 {
     private String NSS;
@@ -120,11 +119,15 @@ public class RecetasPacienteControlador implements Serializable
        recetaDAO.actualizar(receta);
        recetas = recetaDAO.listarRecetas(NSS);   
       */ 
-       return "/farmacia/privado/recetas/introducirPaciente.xhtml";
+       return "/farmacia/privado/recetas/listadoRecetas.xhtml";
     }
     
-    public String toRet(){
-        return "/medico/login.xhtml";
+    public String servirReceta(Receta receta,Farmacia farmacia){
+        receta.setEstado(EstadoReceta.SERVIDA);
+        receta.setFarmaciaDispensadora(farmacia);
+        recetaDAO.actualizar(receta);
+        
+        return "/farmacia/privado/recetas/recetaServida.xhtml?faces-redirect = true";
     }
 
 }
