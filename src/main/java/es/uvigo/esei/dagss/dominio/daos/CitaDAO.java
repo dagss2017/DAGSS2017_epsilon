@@ -29,7 +29,7 @@ public class CitaDAO  extends GenericoDAO<Cita>{
                                                + " AND c.fecha = :fecha", Cita.class);
         q.setParameter("medico", medico);
 
-        q.setParameter("fecha",(new Date()).getTime());
+        q.setParameter("fecha",(Calendar.getInstance()).getTime());
         
         return q.getResultList();
     }

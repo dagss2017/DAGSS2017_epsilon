@@ -60,7 +60,11 @@
                                 <h:outputText value="#{cita.estado} "/>
                             </b:dataTableColumn>
 
-                           
+                            <b:dataTableColumn label="Estado">
+                                <b:commandButton id="botonVer" icon-awesome="fa-address-card" tooltip="Atender" 
+                                                 action="#{atencionPacienteControlador.atenderPaciente(cita.paciente)}"/>
+                           </b:dataTableColumn>
+                            
                         </b:dataTable>
                         
 
