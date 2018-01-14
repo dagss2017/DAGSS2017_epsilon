@@ -43,9 +43,9 @@ public class AgendaControlador implements Serializable {
     }
 
     
-    public List<Cita> loadCitas(String medicoID) {
-        citas = citaDAO.buscarCitasDelMedico(medicoID);
-        return citas;
+    public List<Cita> loadCitas(Medico medico) {
+        this.citas = citaDAO.buscarCitasDelMedico(medico);
+        return this.citas;
     }
     
     public List<Cita> getCitas() {
