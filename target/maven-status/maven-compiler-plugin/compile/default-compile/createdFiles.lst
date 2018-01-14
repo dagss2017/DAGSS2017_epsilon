@@ -37,3 +37,4 @@ es/uvigo/esei/dagss/controladores/autenticacion/FiltroAutenticacion.class
 es/uvigo/esei/dagss/dominio/entidades/Medicamento.class
 es/uvigo/esei/dagss/dominio/entidades/EstadoCita.class
 es/uvigo/esei/dagss/dominio/daos/GenericoDAO.class
+

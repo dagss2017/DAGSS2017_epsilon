@@ -18,28 +18,14 @@ public class RecetaDAO extends GenericoDAO<Receta>{
     
     public List<Receta> listarRecetas(String NTS) 
     {
-        TypedQuery<Receta> q = em.createQuery(  "SELECT r " +
-                                                " FROM Receta AS r"+
-                                                " INNER JOIN Prescripcion AS p"+
-                                                " ON r.prescripcion.id = p.id"+
-                                                " INNER JOIN Paciente AS d"+
-                                                " ON p.paciente.id = d.id"+
-                                                " WHERE d.numeroTarjetaSanitaria= :NTS",Receta.class);
+        TypedQuery<Receta> q = em.createQuery("SELECT r "
+                                              + "FROM Receta AS r "
+                                              + "WHERE r.prescripcion.paciente.numeroTarjetaSanitaria = :NTS"
+                                              , Receta.class);
     
     q.setParameter("NTS", NTS);
 
         return q.getResultList();
     }
     
-    /*
-    TypedQuery<Receta> q = em.createQuery(  "SELECT r " +
-                                                " FROM Receta AS r"+
-                                                " INNER JOIN Prescripcion AS p"+
-                                                " ON r.prescripcion.id = p.id"+
-                                                " INNER JOIN Paciente AS d"+
-                                                " ON p.paciente.id = d.id"+
-                                                " WHERE d.numeroSeguridadSocial= :NSS",Receta.class);
-    
-    q.setParameter("NSS", NSS);
-    */
 }
