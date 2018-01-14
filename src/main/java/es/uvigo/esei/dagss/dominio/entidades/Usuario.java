@@ -32,7 +32,7 @@ public abstract class Usuario implements Serializable {
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @TableGenerator(name = "USUARIO_GEN", table = "USUARIO_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", allocationSize = 1)           
     @GeneratedValue(strategy = GenerationType.TABLE, generator = "USUARIO_GEN")
-    Long id;
+        Long id;
 
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     Date fechaAlta;
