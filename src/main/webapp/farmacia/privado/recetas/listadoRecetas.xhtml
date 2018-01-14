@@ -13,15 +13,15 @@
         </ui:define>
 
         <ui:define name="menu">
-                <ui:include src="/farmacia/plantillas/menuFarmacia.xhtml"/>
+            <ui:include src="/plantillas/menuComun.xhtml"/>
         </ui:define>  
         
         <ui:define name="contenido">
             <h:form id="formularioListado">    
                 <b:container fluid="true">
                     <b:panel title="Listado de Recetas" collapsible="false">
-                        <b:dataTable id="tablaListadoRecetas" class="tablaListadoRecetasClass"
-                                     value="#{RecetasPacienteControlador.recetas}"
+                        <b:dataTable id="tablaListado" class="tablaListadoClass"
+                                     value="#{recetasPacienteControlador.recetas}"
                                      var="receta"                            
                                      page-length="5" page-length-menu="[5,10,20]">                     
                             <b:dataTableColumn label="Medicamento">
@@ -43,15 +43,12 @@
                             </b:dataTableColumn>
                             
                             <b:dataTableColumn label="Disponibilidad">
-                                <h:outputText value="#{RecetasPacienteControlador.recetaValida(receta.finValidez, receta)}" />
+                                <h:outputText value="#{recetasPacienteControlador.recetaValida(receta)}" />
                             </b:dataTableColumn>
              
                             <b:dataTableColumn label="Acciones" class="text-center">                         
-                                <b:commandButton id="botonValidar" icon-awesome="fa-check" tooltip="Validar" ajax="true" 
-                                                 action="#{RecetasPacienteControlador.retorno(receta,Controlador.farmaciaActual)}"
-                                                 rendered="#{RecetasPacienteControlador.servida(receta, receta.finValidez)}"
-                                                 update="@(.tablaListadoRecetasClass)"
-                                                 />
+                                <b:commandButton id="BotonServir" icon-awesome="fa-check" tooltip="Servir"
+                                                 action="#{recetasPacienteControlador.toRet()}"/>
                             </b:dataTableColumn>
                             
                         </b:dataTable>

@@ -16,11 +16,11 @@
                 <h:form id="farmaciaForm">
                     <b:column offset="3" span="6">
                         <b:panel title="Paciente" look="primary" collapsible="false">
-                            <b:inputText id="NTS" label="Nº Tarjeta:" value="#{RecetasPacienteControlador.NSS}" />
-                            <b:commandButton value="Buscar" action="#{RecetasPacienteControlador.listarRecetas}" span="2"/>
+                            <b:inputText id="NTS" label="Nº Tarjeta:" value="#{recetasPacienteControlador.NSS}" />
+                            <b:commandButton value="Buscar" action="#{recetasPacienteControlador.listarRecetas()}" span="2"/>
                             
                             <f:facet name="footer">
-                                Paciente de pruebas: 1212121212
+                                Paciente de pruebas: 2222222222
                             </f:facet>
                         </b:panel>
                     </b:column>

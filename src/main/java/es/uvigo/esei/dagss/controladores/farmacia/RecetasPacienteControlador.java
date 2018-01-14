@@ -27,7 +27,7 @@ import javax.inject.Named;
  *
  * @author LuisF
  */
-@Named(value = "RecetasPacienteControlador")
+@Named(value = "recetasPacienteControlador")
 @ConversationScoped
 public class RecetasPacienteControlador implements Serializable
 {
@@ -85,18 +85,20 @@ public class RecetasPacienteControlador implements Serializable
         return destino;
     }
     
-    public String recetaValida(Date fecha,Receta receta)
+    
+    //Refactored
+    public String recetaValida(Receta receta)
     {
         LocalDateTime now = LocalDateTime.now();
         Date now2= Date.from(now.toInstant(ZoneOffset.UTC));
         
-        if(fecha.before(now2))
+        if(receta.getFinValidez().before(now2))
         {
             return "No Disponible";
         }
         else
         {
-            if("GENERADA".equals(receta.getEstado().toString()))
+            if(receta.getEstado().equals(EstadoReceta.GENERADA))
                 return "Disponible para Suministro";
             else
                 return "No Disponible";
@@ -111,12 +113,18 @@ public class RecetasPacienteControlador implements Serializable
         return "GENERADA".equals(receta.getEstadoReceta().toString())&&(fecha.after(now2));
     }
         
-    public void retorno(Receta receta, Farmacia farmacia)
+    public String retorno(Receta receta, Farmacia farmacia)
     {
-       receta.setEstado(EstadoReceta.SERVIDA);
+    /*   receta.setEstado(EstadoReceta.SERVIDA);
        receta.setFarmaciaDispensadora(farmacia);
        recetaDAO.actualizar(receta);
        recetas = recetaDAO.listarRecetas(NSS);   
+      */ 
+       return "/farmacia/privado/recetas/introducirPaciente.xhtml";
+    }
+    
+    public String toRet(){
+        return "/medico/login.xhtml";
     }
 
 }
