@@ -9,7 +9,7 @@
     <ui:composition template="/plantillas/plantillaComun.xhtml">
 
         <ui:define name="tituloPagina">
-            <h3> Formulario de Atención al Paciente </h3>
+            <h3> </h3>
         </ui:define>
 
         <ui:define name="menu">
@@ -19,72 +19,71 @@
         <ui:define name="contenido">
             <h:form id="formularioListado">    
                 <b:container fluid="true">
-                    <b:panel title="Listado de Prescripciones" collapsible="false">
-                        <b:dataTable id="tablaListado" class="tablaListadoClass"
-                                     value="#{atencionPacienteControlador.loadPrescripcion(paciente)}"
-                                     var="prescripcion"                            
-                                     page-length="5" page-length-menu="[5,10,20]">                     
-                            <b:dataTableColumn label="Id">
-                                <h:outputText value="#{prescripcion.id}"/>
-                            </b:dataTableColumn>
+                     <b:column offset="3" span="6">
+                         <h3> Formulario de Atención al Paciente </h3>
+                         <b:panel title="Datos del paciente ID. #{atencionPacienteControlador.pacienteActual.id} " 
+                                  collapsible="false">
+                            <b:panelGrid columns="2">  
+                                 <h:outputLabel value="Nombre" for="nombre"/>
+                        <h:outputText id="nombre" value="#{atencionPacienteControlador.pacienteActual.nombre}" />
 
-                            <b:dataTableColumn label="Paciente">
-                                <h:outputText value="#{prescripcion.paciente.apellidos}, #{prescripcion.paciente.nombre}" />
-                            </b:dataTableColumn>                    
+                        <h:outputLabel value="Apellidos" for="apellidos"/>
+                        <h:outputText id="apellidos" value="#{atencionPacienteControlador.pacienteActual.apellidos}" />
 
-                            <b:dataTableColumn label="Medico">
-                                <h:outputText value="#{prescripcion.medico.apellidos}, #{prescripcion.medico.nombre}" />
-                            </b:dataTableColumn>                    
+                        <h:outputLabel value="DNI" for="dni"/>
+                        <h:outputText id="dni" value="#{atencionPacienteControlador.pacienteActual.dni}" />
 
-                            <b:dataTableColumn label="Dosis">
-                                <h:outputText value="#{prescripcion.dosis}" />
-                            </b:dataTableColumn>                    
+                        <h:outputLabel value="Num. Seg. Social" for="numsegsocial"/>
+                        <h:outputText id="numsegsocial" value="#{atencionPacienteControlador.pacienteActual.numeroSeguridadSocial}" />
 
-                            <b:dataTableColumn label="FechaInicio">
-                                <h:outputText value="#{prescripcion.fechaInicio}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
-                                </h:outputText>
-                            </b:dataTableColumn>
-                            
-                            <b:dataTableColumn label="FechaFin">
-                                <h:outputText value="#{prescripcion.fechaFin}">
-                                    <f:convertDateTime pattern="dd/MM/yyyy" locale="es_ES" timeZone="Europe/Madrid"/>
-                                </h:outputText>
-                            </b:dataTableColumn>
+                        <h:outputLabel value="Num. tarjeta sanitaria" for="numtarjetasanitaria"/>
+                        <h:outputText id="numtarjetasanitaria" value="#{atencionPacienteControlador.pacienteActual.numeroTarjetaSanitaria}" />
 
-                            <b:dataTableColumn label="Indicaciones">
-                                <h:outputText value="#{prescripcion.indicaciones} "/>
-                            </b:dataTableColumn>
-                            
-<!-- 
-                            <b:dataTableColumn label="" orderable="false">
-                                
-                                
-                                <b:commandButton id="botonVer" icon-awesome="eye" tooltip="Ver" ajax="true"  
-                                                 actionListener="#{gestionCitasControlador.doVer(cita)}" 
-                                                 update=":formularioVer:modalVer"
-                                                 oncomplete="$('.modal-ver-class').modal('show')" />
-                                <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar" ajax="true" 
-                                                 actionListener="#{gestionCitasControlador.doEditar(cita)}" 
-                                                 update=":formularioEditar:modalEditar"
-                                                 oncomplete="$('.modal-editar-class').modal('show')"/>
-                                <b:commandButton id="botonBorrar" icon-awesome="trash" tooltip="Eliminar" ajax="true" 
-                                                 actionListener="#{gestionCitasControlador.doEliminar(cita)}"
-                                                 update="@(.tablaListadoClass)"/>
-                            </b:dataTableColumn>  
--->
-                        </b:dataTable>
-                        
+                        <h:outputLabel value="Domicilio" for="domicilio"/>
+                        <h:outputText id="domicilio" value="#{atencionPacienteControlador.pacienteActual.direccion.domicilio}" />
+
+                        <h:outputLabel value="Localidad" for="localidad"/>
+                        <h:outputText id="localidad" value="#{atencionPacienteControlador.pacienteActual.direccion.localidad}" />
+
+                        <h:outputLabel value="Provincia" for="provincia"/>
+                        <h:outputText id="provincia" value="#{atencionPacienteControlador.pacienteActual.direccion.provincia}" />
+
+                        <h:outputLabel value="Cod. postal" for="codpostal"/>
+                        <h:outputText id="codpostal" value="#{atencionPacienteControlador.pacienteActual.direccion.codigoPostal}" />
+
+                        <h:outputLabel value="Telefono" for="telefono"/>
+                        <h:outputText id="telefono" value="#{atencionPacienteControlador.pacienteActual.telefono}" />
+
+                        <h:outputLabel value="e-mail" for="email"/>
+                        <h:outputText id="email" value="#{atencionPacienteControlador.pacienteActual.email}" />
+
+                        <h:outputLabel value="Médico" for="medico"/>
+                        <h:outputText id="medico" value="#{atencionPacienteControlador.pacienteActual.medico.nombre} #{atencionPacienteControlador.pacienteActual.medico.apellidos}" />                
+
+                        <h:outputLabel value="Centro de Salud" for="centrosalud"/>
+                        <h:outputText id="centrosalud" value="#{atencionPacienteControlador.pacienteActual.medico.centroSalud.nombre}  (#{atencionPacienteControlador.pacienteActual.medico.centroSalud.direccion.localidad})" />                
+
+                        <h:outputLabel value="Fecha alta" for="fechaalta"/>
+                        <h:outputText id="fechaalta" value="#{atencionPacienteControlador.pacienteActual.fechaAlta}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+
+                        <h:outputLabel value="Último acceso" for="ultimoacceso"/>
+                        <h:outputText id="ultimoacceso" value="#{atencionPacienteControlador.pacienteActual.ultimoAcceso}">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </h:outputText>
+                            </b:panelGrid>
+                        </b:panel>
+                         
+                          <b:commandButton id="botonRecetar" icon-awesome="fa-address-card" tooltip="Recetar" 
+                                                 action="/medico/privado/Prescripciones/formularioPrescripciones.xhtml"/>
+                          <br/><br/>
+                         
+                         
+                     </b:column>
                         <f:facet name="footer">
-                            <!--
-                            <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Cita" tooltip="Nueva cita" ajax="true"
-                                             actionListener="#{gestionCitasControlador.doNuevo()}" 
-                                             update=":formularioNuevo:modalNuevo"
-                                             oncomplete="$('.modal-nuevo-class').modal('show')"/>
-                            
-                            -->
+                            <b:button value="Cerrar" dismiss="modal"/>
                         </f:facet>
-                    </b:panel>
                 </b:container>
             </h:form>         
 <!--
