@@ -13,8 +13,11 @@
                 <h:form id="VolverForm">
                     <b:column offset="3" span="6">
                         <b:panel title="Receta servida correctamente" look="primary" collapsible="false">
-                            <h:link value="Atender al mismo paciente" outcome="/farmacia/privado/recetas/listadoRecetas.xhtml"/>
-                            <h:link value="Atender a otro paciente" outcome="/farmacia/privado/recetas/introducirPaciente.xhtml"/>
+                            <ul>
+                                <li><h:link value="Atender al mismo paciente" outcome="/farmacia/privado/recetas/listadoRecetas.xhtml"/></li>
+                                <li><h:link value="Atender a otro paciente" outcome="/farmacia/privado/recetas/introducirPaciente.xhtml"/></li>    
+                            </ul>
+                            
                             <f:facet name="footer">
                                 Buen Trabajo!!
                             </f:facet>

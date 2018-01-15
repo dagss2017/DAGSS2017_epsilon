@@ -104,12 +104,12 @@ public class RecetasPacienteControlador implements Serializable
         }  
     }
     
-    public boolean servida(Receta receta, Date fecha)
+    public boolean estaDisponible(Receta receta)
     {
         LocalDateTime now = LocalDateTime.now();
         Date now2= Date.from(now.toInstant(ZoneOffset.UTC));
         
-        return "GENERADA".equals(receta.getEstadoReceta().toString())&&(fecha.after(now2));
+        return receta.getEstadoReceta().equals(EstadoReceta.GENERADA)&&(receta.getFinValidez().after(now2));
     }
         
     public String retorno(Receta receta, Farmacia farmacia)

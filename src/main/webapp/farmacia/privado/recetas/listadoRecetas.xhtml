@@ -49,7 +49,9 @@
                             <b:dataTableColumn label="Acciones" class="text-center">          
                                  <h:form id="formularioListado" > 
                                 <b:commandButton id="BotonServir" icon-awesome="fa-check" tooltip="Servir"
-                                                 action="#{recetasPacienteControlador.servirReceta(receta,farmaciaControlador.farmaciaActual)}"/>
+                                                 action="#{recetasPacienteControlador.servirReceta(receta,farmaciaControlador.farmaciaActual)}"
+                                                 rendered="#{recetasPacienteControlador.estaDisponible(receta)}" />
+                                
                                 </h:form>      
                             </b:dataTableColumn>
                             
