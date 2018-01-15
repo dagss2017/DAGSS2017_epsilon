@@ -5,10 +5,14 @@
  */
 package es.uvigo.esei.dagss.controladores.medico;
 
-/**
- *
- * @author osboxes
- */
-public class PrescripcionesControlador {
-    ///medico/privado/Prescripciones/formularioPrescripciones.xhtml
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
+
+@Named(value = "prescripcionesControlador")
+@SessionScoped
+public class PrescripcionesControlador implements Serializable{
+    
+    
+    
 }
