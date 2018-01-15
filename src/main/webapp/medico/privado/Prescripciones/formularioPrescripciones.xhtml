@@ -21,7 +21,7 @@
                 <b:container fluid="true">
                     <b:panel title="Listado de Prescripciones" collapsible="false">
                         <b:dataTable id="tablaListado" class="tablaListadoClass"
-                                     value="#{atencionPacienteControlador.loadPrescripcion(paciente)}"
+                                     value="#{prescripcionesControlador.loadPrescripciones(atencionPacienteControlador.pacienteActual)}"
                                      var="prescripcion"                            
                                      page-length="5" page-length-menu="[5,10,20]">                     
                             <b:dataTableColumn label="Id">
