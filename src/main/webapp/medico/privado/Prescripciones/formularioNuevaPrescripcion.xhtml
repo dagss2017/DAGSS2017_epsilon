@@ -25,10 +25,14 @@
 
 
                                 <b:dataTable id="tablaListado"  class="tablaListadoClass"
+                                             select='true' selectionMode="single"
                                          value="#{gestionMedicamentosControlador.medicamentos}"
                                          var="medicamento" 
-                                         page-length="5" page-length-menu="[5,10,20]">
-
+                                         page-length="5" page-length-menu="[5,10,20]"
+                                         onselect="#{prescripcionesControlador.guardarMedicamentoEnPrescripcion(medicamento)}"
+                                         update="@form"
+                                        >
+                                         
 
                                     <b:dataTableColumn label="Nombre">
                                         <h:outputText value="#{medicamento.nombre}" />
@@ -50,16 +54,12 @@
                                         <h:outputText value="#{medicamento.numeroDosis}" />
                                     </b:dataTableColumn>
 
-                                    <b:dataTableColumn label="" orderable="false">
-                                        <b:button id="selecionar" icon-awesome="plus" tooltip="Selecionar Medicamento" 
-                                                  onclick="#{prescripcionesControlador.prescripcionActual.setMedicamento(medicamento)}"/>
-
-                                    </b:dataTableColumn>  
+ 
                                 </b:dataTable>
                             </b:panel>
                             
                             
-                            <b:label text="#{prescripcionesControlador.prescripcionActual.medicamento}" id="label"/>
+                            <b:label text="a + #{prescripcionesControlador.prescripcionActual.medicamento}" id="label"/>
 
                             <h:outputLabel value="Fecha Fin Medicacion" for="fecha"/>
                             <b:dateTimePicker id="fecha" value="#{prescripcionesControlador.prescripcionActual.fechaFin}" locale="es_ES" show-time="false" allow-input-toggle="true" required="true"/>
@@ -77,8 +77,7 @@
                             <br/>
                             <br/>
                             <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Prescipcion" tooltip="Nueva Prescipcion" ajax="false"
-                                                onclick="#{prescripcionesControlador.doGuardarNuevo()}"
-                                                action="/medico/privado/Prescripciones/formularioPrescripciones.xhtml"/>
+                                                action="#{prescripcionesControlador.doGuardarNuevo()}"/>
                         </b:panel>
                          
 
