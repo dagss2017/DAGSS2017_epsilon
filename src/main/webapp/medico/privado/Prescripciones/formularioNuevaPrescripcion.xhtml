@@ -1,16 +1,114 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:b="http://bootsfaces.net/ui">
+
+    <ui:composition template="/plantillas/plantillaComun.xhtml">
+
+        <ui:define name="tituloPagina">
+            <h3> </h3>
+        </ui:define>
+
+        <ui:define name="menu">
+            <ui:include src="/plantillas/menuComun.xhtml"/>        
+        </ui:define>
+
+        <ui:define name="contenido">
+            <h:form id="formularioListado">    
+                <b:container fluid="true">
+                    <b:column offset="3" span="6">
+                        <b:panel title="Formulario de Nueva Prescripcion" collapsible="false">
+                            <b:panel title="Seleciona medicamento" collapsible="true" collapsed="#{prescripcionesControlador.medicamentoIsSelected()}">
+
+
+                                <b:dataTable id="tablaListado"  class="tablaListadoClass"
+                                         value="#{gestionMedicamentosControlador.medicamentos}"
+                                         var="medicamento" 
+                                         page-length="5" page-length-menu="[5,10,20]">
+
+
+                                    <b:dataTableColumn label="Nombre">
+                                        <h:outputText value="#{medicamento.nombre}" />
+                                    </b:dataTableColumn>                    
+
+                                    <b:dataTableColumn label="Familia">
+                                        <h:outputText value="#{medicamento.familia}" />
+                                    </b:dataTableColumn>                    
+
+                                    <b:dataTableColumn label="Fabricante">
+                                        <h:outputText value="#{medicamento.fabricante}" />
+                                    </b:dataTableColumn>
+
+                                    <b:dataTableColumn label="Principio activo">
+                                        <h:outputText value="#{medicamento.principioActivo}" />
+                                    </b:dataTableColumn>
+
+                                    <b:dataTableColumn label="Num. dosis envase">
+                                        <h:outputText value="#{medicamento.numeroDosis}" />
+                                    </b:dataTableColumn>
+
+                                    <b:dataTableColumn label="" orderable="false">
+                                        <b:button id="selecionar" icon-awesome="plus" tooltip="Selecionar Medicamento" 
+                                                  onclick="#{prescripcionesControlador.prescripcionActual.setMedicamento(medicamento)}"/>
+
+                                    </b:dataTableColumn>  
+                                </b:dataTable>
+                            </b:panel>
+                            
+                            
+                            <b:label text="#{prescripcionesControlador.prescripcionActual.medicamento}" id="label"/>
+
+                            <h:outputLabel value="Fecha Fin Medicacion" for="fecha"/>
+                            <b:dateTimePicker id="fecha" value="#{prescripcionesControlador.prescripcionActual.fechaFin}" locale="es_ES" show-time="false" allow-input-toggle="true" required="true"/>
+
+
+                            <h:outputLabel value="Indicaciones" for="indicaciones"/>
+                            <b:inputTextarea id="indicaciones" value="#{prescripcionesControlador.prescripcionActual.indicaciones}">
+                            </b:inputTextarea>
+                            
+                            <h:outputLabel value="Dosis"/>
+                            <br/>
+                            <b:touchSpin id="dosis" col-md="3" value="#{prescripcionesControlador.prescripcionActual.dosis}"  required="true"/>
+                            
+                            <br/>
+                            <br/>
+                            <br/>
+                            <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Prescipcion" tooltip="Nueva Prescipcion" ajax="false"
+                                                onclick="#{prescripcionesControlador.doGuardarNuevo()}"
+                                                action="/medico/privado/Prescripciones/formularioPrescripciones.xhtml"/>
+                        </b:panel>
+                         
+
+             <!--            
+                    <b:commandButton value="Prescribir" look="primary" tooltip="Recetar" style="width:85px" 
+                                        action="/medico/privado/Prescripciones/formularioPrescripciones.xhtml"/>
+                    
+                    <b:commandButton value="Finalizar" ajax="false" look="success" style="width:85px; margin-left:40px"
+                                     action="#{agendaControlador.finalizarCitaPaciente()}"/>
+             
+             -->
+
+                    </b:column>
+                    
+                    
+                    
+                    <f:facet name="footer">
+                        <b:button value="Cerrar" dismiss="modal"/>
+                    </f:facet>
+                </b:container>
+            </h:form>         
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+            <ui:include src="fragmentoNuevo.xhtml"/>
+            <ui:include src="fragmentoEditar.xhtml"/>
+            <ui:include src="fragmentoVer.xhtml"/>
+  -->
+        </ui:define>
+
+
+    </ui:composition>
+
 </html>
+
