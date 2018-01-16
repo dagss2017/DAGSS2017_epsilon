@@ -80,6 +80,9 @@
                     
                     <b:commandButton value="Finalizar" ajax="false" look="success" style="width:85px; margin-left:40px"
                                      action="#{agendaControlador.finalizarCitaPaciente()}"/>
+                    
+                    <b:commandButton value="Ausente" ajax="false" look="warning" style="width:85px; margin-left:40px"
+                                     action="#{agendaControlador.marcarAusente()}"/>
                     <br/>
                     <br/>
                     </b:column>
@@ -91,11 +94,7 @@
                     </f:facet>
                 </b:container>
             </h:form>         
-<!--
-            <ui:include src="fragmentoNuevo.xhtml"/>
-            <ui:include src="fragmentoEditar.xhtml"/>
-            <ui:include src="fragmentoVer.xhtml"/>
-  -->
+
         </ui:define>
 
 

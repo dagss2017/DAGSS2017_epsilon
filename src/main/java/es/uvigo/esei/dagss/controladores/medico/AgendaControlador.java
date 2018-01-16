@@ -68,13 +68,19 @@ public class AgendaControlador implements Serializable {
 
     
     public String finalizarCitaPaciente(){
-        System.out.println("Cita finaliada");
          this.citaActual.setEstado(EstadoCita.COMPLETADA);
          this.citaDAO.actualizar(this.citaActual);
          
          return "/medico/privado/agenda/agenda.xhtml?faces-redirect = true";
     }
     
+    
+        public String marcarAusente(){
+         this.citaActual.setEstado(EstadoCita.AUSENTE);
+         this.citaDAO.actualizar(this.citaActual);
+         
+         return "/medico/privado/agenda/agenda.xhtml?faces-redirect = true";
+    }
     
     
     public boolean esPlanificada(Cita cita){
