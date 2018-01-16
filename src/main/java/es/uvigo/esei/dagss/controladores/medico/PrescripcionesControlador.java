@@ -16,6 +16,8 @@ import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.interceptor.AroundInvoke;
+import javax.interceptor.InvocationContext;
 
 @Named(value = "prescripcionesControlador")
 @SessionScoped
@@ -75,7 +77,7 @@ public class PrescripcionesControlador implements Serializable{
     }
     
     
-    public void doGuardarNuevo() {
+    public String doGuardarNuevo() {
 
         //this.prescripcionActual = this.prescripcionDAO.crear(prescripcionActual);
         Prescripcion p = new Prescripcion();
@@ -83,6 +85,8 @@ public class PrescripcionesControlador implements Serializable{
         p.setDosis(325);
         p.setIndicaciones(this.prescripcionActual.getMedicamento().toString());
         this.prescripcionActual = this.prescripcionDAO.crear(p);
+        System.out.println(".>"+this.prescripcionActual);
+        return "/medico/privado/Prescripciones/formularioPrescripciones.xhtml";
 
     }
     
@@ -95,6 +99,19 @@ public class PrescripcionesControlador implements Serializable{
     public void guardarMedicamentoEnPrescripcion(Medicamento medicamento){
         this.prescripcionActual.setMedicamento(medicamento);
         this.medicIsSelected = true;
+    }
+    
+    
+    @AroundInvoke
+    private Object logMethod(InvocationContext invocationContext) throws Exception{
+
+        System.out.println(invocationContext.getMethod().getName()+"->" );
+        for(Object object : invocationContext.getParameters()){
+            System.out.print(object.toString()+" || ");
+        }
+        System.out.println("");
+        return invocationContext.proceed();
+
     }
     
     

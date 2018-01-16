@@ -68,6 +68,7 @@ public class AgendaControlador implements Serializable {
 
     
     public String finalizarCitaPaciente(){
+        System.out.println("Cita finaliada");
          this.citaActual.setEstado(EstadoCita.COMPLETADA);
          this.citaDAO.actualizar(this.citaActual);
          

@@ -30,7 +30,7 @@
                             </b:dataTableColumn>      
                             
                             <b:dataTableColumn label="Medicamento">
-                                <h:outputText value="#{prescripcion.medicamento}" />
+                                <h:outputText value="#{prescripcion.medicamento.nombre}" />
                             </b:dataTableColumn>   
 
                             <b:dataTableColumn label="Dosis">
@@ -53,33 +53,22 @@
                                 <h:outputText value="#{prescripcion.indicaciones} "/>
                             </b:dataTableColumn>
                             
-<!-- 
+
                             <b:dataTableColumn label="" orderable="false">
-                                
-                                
-                                <b:commandButton id="botonVer" icon-awesome="eye" tooltip="Ver" ajax="true"  
-                                                 actionListener="#{gestionCitasControlador.doVer(cita)}" 
-                                                 update=":formularioVer:modalVer"
-                                                 oncomplete="$('.modal-ver-class').modal('show')" />
-                                <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar" ajax="true" 
-                                                 actionListener="#{gestionCitasControlador.doEditar(cita)}" 
-                                                 update=":formularioEditar:modalEditar"
-                                                 oncomplete="$('.modal-editar-class').modal('show')"/>
-                                <b:commandButton id="botonBorrar" icon-awesome="trash" tooltip="Eliminar" ajax="true" 
-                                                 actionListener="#{gestionCitasControlador.doEliminar(cita)}"
-                                                 update="@(.tablaListadoClass)"/>
+                                <b:commandButton id="botonVer" icon-awesome="eye" tooltip="Ver" ajax="true"   />
+                                <b:commandButton id="botonEditar" icon-awesome="pencil" tooltip="Editar" ajax="true"   />
+                                <b:commandButton id="botonBorrar" icon-awesome="trash" tooltip="Eliminar" ajax="true" />
                             </b:dataTableColumn>  
--->
+
                         </b:dataTable>
                         
                         <f:facet name="footer">
-                            <!--
-                            <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Cita" tooltip="Nueva cita" ajax="true"
-                                             actionListener="#{gestionCitasControlador.doNuevo()}" 
-                                             update=":formularioNuevo:modalNuevo"
-                                             oncomplete="$('.modal-nuevo-class').modal('show')"/>
                             
-                            -->
+                            <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Prescipcion" tooltip="Nueva Prescipcion" ajax="false"
+                                              onclick="#{prescripcionesControlador.doNuevo(atencionPacienteControlador.pacienteActual,medicoControlador.medicoActual)}"
+                                             action="/medico/privado/Prescripciones/formularioNuevaPrescripcion.xhtml"/>
+                            
+                            
                         </f:facet>
                     </b:panel>
                 </b:container>
