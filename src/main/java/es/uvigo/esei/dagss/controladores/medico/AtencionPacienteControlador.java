@@ -50,5 +50,7 @@ public class AtencionPacienteControlador implements Serializable{
          
          return "/medico/privado/atencionPaciente/formularioAtencionPaciente.xhtml" ;
      }
+     
+
     
 }
