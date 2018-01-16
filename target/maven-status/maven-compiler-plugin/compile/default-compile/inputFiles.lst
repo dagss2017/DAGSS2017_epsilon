@@ -23,6 +23,7 @@
 /home/osboxes/NetBeansProjects/DAGSS2017_epsilon/src/main/java/es/uvigo/esei/dagss/controladores/administrador/GestionCentrosSaludControlador.java
 /home/osboxes/NetBeansProjects/DAGSS2017_epsilon/src/main/java/es/uvigo/esei/dagss/dominio/daos/MedicamentoDAO.java
 /home/osboxes/NetBeansProjects/DAGSS2017_epsilon/src/main/java/es/uvigo/esei/dagss/controladores/medico/MedicoControlador.java
+/home/osboxes/NetBeansProjects/DAGSS2017_epsilon/src/main/java/es/uvigo/esei/dagss/controladores/medico/PrescripcionesControlador.java
 /home/osboxes/NetBeansProjects/DAGSS2017_epsilon/src/main/java/es/uvigo/esei/dagss/controladores/administrador/GestionPacientesControlador.java
 /home/osboxes/NetBeansProjects/DAGSS2017_epsilon/src/main/java/es/uvigo/esei/dagss/controladores/farmacia/RecetasPacienteControlador.java
 /home/osboxes/NetBeansProjects/DAGSS2017_epsilon/src/main/java/es/uvigo/esei/dagss/dominio/daos/CitaDAO.java

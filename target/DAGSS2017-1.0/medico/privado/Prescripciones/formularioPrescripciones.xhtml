@@ -21,20 +21,17 @@
                 <b:container fluid="true">
                     <b:panel title="Listado de Prescripciones" collapsible="false">
                         <b:dataTable id="tablaListado" class="tablaListadoClass"
-                                     value="#{atencionPacienteControlador.loadPrescripcion(paciente)}"
+                                     value="#{prescripcionesControlador.loadPrescripciones(atencionPacienteControlador.pacienteActual)}"
                                      var="prescripcion"                            
-                                     page-length="5" page-length-menu="[5,10,20]">                     
-                            <b:dataTableColumn label="Id">
-                                <h:outputText value="#{prescripcion.id}"/>
-                            </b:dataTableColumn>
-
-                            <b:dataTableColumn label="Paciente">
-                                <h:outputText value="#{prescripcion.paciente.apellidos}, #{prescripcion.paciente.nombre}" />
-                            </b:dataTableColumn>                    
+                                     page-length="5" page-length-menu="[5,10,20]">                                  
 
                             <b:dataTableColumn label="Medico">
                                 <h:outputText value="#{prescripcion.medico.apellidos}, #{prescripcion.medico.nombre}" />
-                            </b:dataTableColumn>                    
+                            </b:dataTableColumn>      
+                            
+                            <b:dataTableColumn label="Medicamento">
+                                <h:outputText value="#{prescripcion.medicamento}" />
+                            </b:dataTableColumn>   
 
                             <b:dataTableColumn label="Dosis">
                                 <h:outputText value="#{prescripcion.dosis}" />

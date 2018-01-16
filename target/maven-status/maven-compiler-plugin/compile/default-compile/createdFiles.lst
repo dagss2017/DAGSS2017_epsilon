@@ -12,6 +12,7 @@ es/uvigo/esei/dagss/dominio/daos/RecetaDAO.class
 es/uvigo/esei/dagss/controladores/medico/AtencionPacienteControlador.class
 es/uvigo/esei/dagss/dominio/daos/CitaDAO.class
 es/uvigo/esei/dagss/controladores/autenticacion/AutenticacionControlador.class
+es/uvigo/esei/dagss/controladores/medico/PrescripcionesControlador.class
 es/uvigo/esei/dagss/dominio/daos/PrescripcionDAO.class
 es/uvigo/esei/dagss/dominio/daos/AdministradorDAO.class
 es/uvigo/esei/dagss/dominio/entidades/Direccion.class

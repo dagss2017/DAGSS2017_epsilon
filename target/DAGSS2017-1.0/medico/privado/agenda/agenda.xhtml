@@ -62,7 +62,9 @@
 
                             <b:dataTableColumn label="Estado" class="text-center">
                                 <b:commandButton id="botonVer" icon-awesome="fa-address-card" tooltip="Atender" 
-                                                 action="#{atencionPacienteControlador.atenderPaciente(cita.paciente)}"/>
+                                                 onclick="#{agendaControlador.setCitaActual(cita)}"
+                                                 action="#{atencionPacienteControlador.atenderPaciente(cita.paciente)}"
+                                                 rendered="#{agendaControlador.esPlanificada(cita)}"/>
                            </b:dataTableColumn>
                             
                         </b:dataTable>

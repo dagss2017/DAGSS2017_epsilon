@@ -75,15 +75,20 @@
                             </b:panelGrid>
                         </b:panel>
                          
-                          <b:commandButton id="botonRecetar" icon-awesome="fa-address-card" tooltip="Recetar" 
-                                                 action="/medico/privado/Prescripciones/formularioPrescripciones.xhtml"/>
-                          <br/><br/>
-                         
-                         
-                     </b:column>
-                        <f:facet name="footer">
-                            <b:button value="Cerrar" dismiss="modal"/>
-                        </f:facet>
+                    <b:commandButton value="Prescribir" look="primary" tooltip="Recetar" style="width:85px" 
+                                        action="/medico/privado/Prescripciones/formularioPrescripciones.xhtml"/>
+                    
+                    <b:commandButton value="Finalizar" ajax="false" look="success" style="width:85px; margin-left:40px"
+                                     action="#{agendaControlador.finalizarCitaPaciente()}"/>
+                    <br/>
+                    <br/>
+                    </b:column>
+                    
+                    
+                    
+                    <f:facet name="footer">
+                        <b:button value="Cerrar" dismiss="modal"/>
+                    </f:facet>
                 </b:container>
             </h:form>         
 <!--
