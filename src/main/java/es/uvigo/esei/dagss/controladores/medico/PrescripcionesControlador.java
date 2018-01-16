@@ -6,6 +6,7 @@
 package es.uvigo.esei.dagss.controladores.medico;
 
 import es.uvigo.esei.dagss.dominio.daos.PrescripcionDAO;
+import es.uvigo.esei.dagss.dominio.entidades.Medicamento;
 import es.uvigo.esei.dagss.dominio.entidades.Medico;
 import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.Prescripcion;
@@ -25,6 +26,9 @@ public class PrescripcionesControlador implements Serializable{
     
     List<Prescripcion> prescripciones;
     Prescripcion prescripcionActual;
+    
+
+    private boolean medicIsSelected;
     
     
     public PrescripcionesControlador(){
@@ -65,9 +69,33 @@ public class PrescripcionesControlador implements Serializable{
         this.prescripcionActual.setPaciente(paciente);
         this.prescripcionActual.setMedico(medico);
         this.prescripcionActual.setFechaInicio(Calendar.getInstance().getTime()); 
+        this.prescripcionActual.setDosis(0);
+        this.medicIsSelected=false;
 
     }
     
+    
+    public void doGuardarNuevo() {
+
+        //this.prescripcionActual = this.prescripcionDAO.crear(prescripcionActual);
+        Prescripcion p = new Prescripcion();
+        p.setFechaInicio(Calendar.getInstance().getTime());
+        p.setDosis(325);
+        p.setIndicaciones(this.prescripcionActual.getMedicamento().toString());
+        this.prescripcionActual = this.prescripcionDAO.crear(p);
+
+    }
+    
+    
+    public boolean medicamentoIsSelected(){
+        return this.medicIsSelected;
+    }
+    
+    
+    public void guardarMedicamentoEnPrescripcion(Medicamento medicamento){
+        this.prescripcionActual.setMedicamento(medicamento);
+        this.medicIsSelected = true;
+    }
     
     
 }
