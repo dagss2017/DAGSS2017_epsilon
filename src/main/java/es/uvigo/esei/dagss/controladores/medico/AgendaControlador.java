@@ -9,7 +9,9 @@ import es.uvigo.esei.dagss.controladores.autenticacion.AutenticacionControlador;
 import es.uvigo.esei.dagss.dominio.daos.CitaDAO;
 import es.uvigo.esei.dagss.dominio.daos.MedicoDAO;
 import es.uvigo.esei.dagss.dominio.entidades.Cita;
+import es.uvigo.esei.dagss.dominio.entidades.EstadoCita;
 import es.uvigo.esei.dagss.dominio.entidades.Medico;
+import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.TipoUsuario;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -65,7 +67,18 @@ public class AgendaControlador implements Serializable {
     }
 
     
+    public String finalizarCitaPaciente(){
+         this.citaActual.setEstado(EstadoCita.COMPLETADA);
+         this.citaDAO.actualizar(this.citaActual);
+         
+         return "/medico/privado/agenda/agenda.xhtml?faces-redirect = true";
+    }
     
+    
+    
+    public boolean esPlanificada(Cita cita){
+        return cita.getEstado().equals(EstadoCita.PLANIFICADA);
+    }
 
     
     
