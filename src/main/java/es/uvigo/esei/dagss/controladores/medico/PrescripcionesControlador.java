@@ -6,9 +6,11 @@
 package es.uvigo.esei.dagss.controladores.medico;
 
 import es.uvigo.esei.dagss.dominio.daos.PrescripcionDAO;
+import es.uvigo.esei.dagss.dominio.entidades.Medico;
 import es.uvigo.esei.dagss.dominio.entidades.Paciente;
 import es.uvigo.esei.dagss.dominio.entidades.Prescripcion;
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.List;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
@@ -55,6 +57,15 @@ public class PrescripcionesControlador implements Serializable{
 
     public void setPrescripcionActual(Prescripcion prescripcionActual) {
         this.prescripcionActual = prescripcionActual;
+    }
+    
+        
+    public void doNuevo(Paciente paciente,Medico medico) {
+        this.prescripcionActual = new Prescripcion();
+        this.prescripcionActual.setPaciente(paciente);
+        this.prescripcionActual.setMedico(medico);
+        this.prescripcionActual.setFechaInicio(Calendar.getInstance().getTime()); 
+
     }
     
     

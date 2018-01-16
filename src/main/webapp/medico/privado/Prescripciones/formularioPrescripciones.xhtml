@@ -30,7 +30,7 @@
                             </b:dataTableColumn>      
                             
                             <b:dataTableColumn label="Medicamento">
-                                <h:outputText value="#{prescripcion.medicamento}" />
+                                <h:outputText value="#{prescripcion.medicamento.nombre}" />
                             </b:dataTableColumn>   
 
                             <b:dataTableColumn label="Dosis">
@@ -73,13 +73,12 @@
                         </b:dataTable>
                         
                         <f:facet name="footer">
-                            <!--
-                            <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Cita" tooltip="Nueva cita" ajax="true"
-                                             actionListener="#{gestionCitasControlador.doNuevo()}" 
-                                             update=":formularioNuevo:modalNuevo"
-                                             oncomplete="$('.modal-nuevo-class').modal('show')"/>
                             
-                            -->
+                            <b:commandButton id="botonNuevo" icon-awesome="plus" value="Crear Cita" tooltip="Nueva cita" ajax="true"
+                                             onclick="#{prescripcionesControlador.doNuevo(atencionPacienteControlador.pacienteActual,medicoControlador.medicoActual)}"
+                                             action="/medico/privado/Prescripciones/formularioNuevaPrescripcion.xhtml"/>
+                            
+                            
                         </f:facet>
                     </b:panel>
                 </b:container>
