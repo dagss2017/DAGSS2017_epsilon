@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+        <h:form id="formularioSelecionar">
+            <b:modal id="modalSelecionar" class="modal-selecionar-class" title="Selecionar Medicamento">
+                 <b:panel title="Seleciona medicamento" collapsible="true">
+
+
+                                <b:dataTable id="tablaListado"  class="tablaListadoClass"
+                                         value="#{gestionMedicamentosControlador.medicamentos}"
+                                         var="medicamento" 
+                                         page-length="5" page-length-menu="[5,10,20]">
+                                         
+
+                                    <b:dataTableColumn label="Nombre">
+                                        <h:outputText value="#{medicamento.nombre}" />
+                                    </b:dataTableColumn>                    
+
+                                    <b:dataTableColumn label="Familia">
+                                        <h:outputText value="#{medicamento.familia}" />
+                                    </b:dataTableColumn>                    
+
+                                    <b:dataTableColumn label="Fabricante">
+                                        <h:outputText value="#{medicamento.fabricante}" />
+                                    </b:dataTableColumn>
+
+                                    <b:dataTableColumn label="Principio activo">
+                                        <h:outputText value="#{medicamento.principioActivo}" />
+                                    </b:dataTableColumn>
+
+                                    <b:dataTableColumn label="Num. dosis envase">
+                                        <h:outputText value="#{medicamento.numeroDosis}" />
+                                    </b:dataTableColumn>
+                                    
+                                    <b:dataTableColumn label="" orderable="false">
+                                         <b:commandButton icon-awesome="plus" tooltip="Selecionar"
+                                            ajax="true" process="@form" update=":formularioSelecionar:tablaListado :mensajesGlobal" 
+                                            actionListener="#{prescripcionesControlador.prescripcionActual.setMedicamento(medicamento)}"  
+                                            oncomplete="$('.modal-selecionar-class').modal('hide')"
+                                            />
+                                        
+                                    </b:dataTableColumn>
+
+ 
+                                </b:dataTable>
+                            </b:panel>
+                <f:facet name="footer">
+                   <b:button value="Cerrar" dismiss="modal"/>
+             
+                </f:facet>
+            </b:modal>
+        </h:form>
+
+    </ui:composition>
+</html>
+

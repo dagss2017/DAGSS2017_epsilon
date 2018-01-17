@@ -79,13 +79,8 @@ public class PrescripcionesControlador implements Serializable{
     
     public String doGuardarNuevo() {
 
-        //this.prescripcionActual = this.prescripcionDAO.crear(prescripcionActual);
-        Prescripcion p = new Prescripcion();
-        p.setFechaInicio(Calendar.getInstance().getTime());
-        p.setDosis(325);
-        p.setIndicaciones(this.prescripcionActual.getMedicamento().toString());
-        this.prescripcionActual = this.prescripcionDAO.crear(p);
-        System.out.println(".>"+this.prescripcionActual);
+        this.prescripcionActual = this.prescripcionDAO.crear(prescripcionActual);
+
         return "/medico/privado/Prescripciones/formularioPrescripciones.xhtml";
 
     }
@@ -95,7 +90,7 @@ public class PrescripcionesControlador implements Serializable{
         return this.medicIsSelected;
     }
     
-    
+    ///medico/privado/Prescripciones/fragmentoSelecionarMedicamento.xhtml
     public void guardarMedicamentoEnPrescripcion(Medicamento medicamento){
         this.prescripcionActual.setMedicamento(medicamento);
         this.medicIsSelected = true;

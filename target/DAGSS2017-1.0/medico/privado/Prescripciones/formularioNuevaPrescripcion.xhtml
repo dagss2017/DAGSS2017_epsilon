@@ -21,45 +21,14 @@
                 <b:container fluid="true">
                     <b:column offset="3" span="6">
                         <b:panel title="Formulario de Nueva Prescripcion" collapsible="false">
-                            <b:panel title="Seleciona medicamento" collapsible="true" collapsed="#{prescripcionesControlador.medicamentoIsSelected()}">
-
-
-                                <b:dataTable id="tablaListado"  class="tablaListadoClass"
-                                             select='true' selectionMode="single"
-                                         value="#{gestionMedicamentosControlador.medicamentos}"
-                                         var="medicamento" 
-                                         page-length="5" page-length-menu="[5,10,20]"
-                                         onselect="#{prescripcionesControlador.guardarMedicamentoEnPrescripcion(medicamento)}"
-                                         update="@form"
-                                        >
-                                         
-
-                                    <b:dataTableColumn label="Nombre">
-                                        <h:outputText value="#{medicamento.nombre}" />
-                                    </b:dataTableColumn>                    
-
-                                    <b:dataTableColumn label="Familia">
-                                        <h:outputText value="#{medicamento.familia}" />
-                                    </b:dataTableColumn>                    
-
-                                    <b:dataTableColumn label="Fabricante">
-                                        <h:outputText value="#{medicamento.fabricante}" />
-                                    </b:dataTableColumn>
-
-                                    <b:dataTableColumn label="Principio activo">
-                                        <h:outputText value="#{medicamento.principioActivo}" />
-                                    </b:dataTableColumn>
-
-                                    <b:dataTableColumn label="Num. dosis envase">
-                                        <h:outputText value="#{medicamento.numeroDosis}" />
-                                    </b:dataTableColumn>
-
- 
-                                </b:dataTable>
-                            </b:panel>
+                           
+                            
+                            <b:commandButton id="botonVer" icon-awesome="eye" tooltip="Ver" ajax="true"
+                                                 update=":formularioSelecionar:modalSelecionar"
+                                                 oncomplete="$('.modal-selecionar-class').modal('show')" />
                             
                             
-                            <b:label text="a + #{prescripcionesControlador.prescripcionActual.medicamento}" id="label"/>
+                            
 
                             <h:outputLabel value="Fecha Fin Medicacion" for="fecha"/>
                             <b:dateTimePicker id="fecha" value="#{prescripcionesControlador.prescripcionActual.fechaFin}" locale="es_ES" show-time="false" allow-input-toggle="true" required="true"/>
@@ -93,6 +62,8 @@
                 </b:container>
             </h:form>         
 
+            <ui:include src="fragmentoSelecionarMedicamento.xhtml"/>
+            
         </ui:define>
 
 

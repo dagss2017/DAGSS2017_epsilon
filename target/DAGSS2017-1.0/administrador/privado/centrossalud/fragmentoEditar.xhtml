@@ -32,7 +32,7 @@
                 </b:panel>
                 <f:facet name="footer">
                     <b:commandButton value="Guardar" 
-                                     ajax="true" process="@form" update=":formularioListado:tablaListado :mensajesGlobal" 
+                                     ajax="true" process="@form" update="formularioListado :nombreMedicamento" 
                                      actionListener="#{gestionCentrosSaludControlador.doGuardarEditado()}"  
                                      oncomplete="$('.modal-editar-class').modal('hide')"/>
                     <b:button value="Cerrar" dismiss="modal"/>
